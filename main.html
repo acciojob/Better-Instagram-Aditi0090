@@ -7,16 +7,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>Better Instagram</title>
+	  <style>
+		  #div1 {
+  background-image: url("https://picsum.photos/id/237/200/300");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+#div2 {
+  background-image: url("https://picsum.photos/seed/picsum/200/300");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+#div3 {
+  background-image: url("https://picsum.photos/200/300?grayscale");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+#div4 {
+  background-image: url("https://picsum.photos/200/300/");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+#div5 {
+  background-image: url("https://picsum.photos/200/300.jpg");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+#div6 {
+  background-image: url("https://picsum.photos/id/102/200/300");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+div.container {
+  border: 5px solid #555;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected {
+  border: 5px solid rgb(0, 195, 255);
+}
+
+p {
+  text-align: center;
+}
+
+button {
+  margin: 20px;
+}
+
+	  </style>
   </head>
   <body>
-    <h1 style="text-align: center">Arrange Images by drag and drop</h1>
-    <div class="flex" id="parent">
-      <div draggable="true" class="image" >Image 1</div>
-      <div draggable="true" class="image" >Image 2</div>
-      <div draggable="true" class="image" >Image 3</div>
-      <div draggable="true" class="image" >Image 4</div>
-      <div draggable="true" class="image" >Image 5</div>
-      <div draggable="true" class="image" >Image 6</div>
+   <div id="div1" class="image-box">
+
+            <img id="drag1" src="https://picsum.photos/id/237/200/300" draggable="true">
+
+        </div>
+
+        <div id="div2" class="image-box">
+
+            <img id="drag2" src="https://picsum.photos/seed/picsum/200/300" draggable="true">
+
+        </div>
+
+        <div id="div3" class="image-box">
+
+            <img id="drag3" src="https://picsum.photos/200/300?grayscale" draggable="true">
+
+        </div>
+
+        <div id="div4" class="image-box">
+
+            <img id="drag4" src="https://picsum.photos/200/300/" draggable="true">
+
+        </div>
+
+        <div id="div5" class="image-box">
+
+            <img id="drag5" src="https://picsum.photos/200/300.jpg" draggable="true">
+
+        </div>
+
+        <div id="div6" class="image-box">
+
+            <img id="drag6" src="https://picsum.photos/id/102/200/300" draggable="true">
+
+        </div>
+
     </div>
+	  <script>
+		    let draggedImage = null;
+    function allowDrop(event){
+        event.preventDefault();
+    }
+    function drag(event){
+        draggedImage = event.target;
+    }
+
+    function drop(event){
+        event.preventDefault();
+        const targetContainer = event.currentTarget;
+
+       if(targetContainer !== draggedImage.parentElement){
+        const targetImage = targetContainer.querySelector('img');
+
+        const tempSrc = targetImage.src;
+        targetImage.src = draggedImage.src;
+        draggedImage.src = tempSrc;
+       }
+    }
+	  </script>
   </body>
 </html>
